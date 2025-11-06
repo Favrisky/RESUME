@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #0f172a;
+  color: #e5e7eb;
+}
+
+/* Background Gradient */
+.gradient-bg {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%);
+}
+
+/* Resume Preview */
+.resume-preview {
+  background-color: #1e293b;
+  color: #f8fafc;
+  min-height: 600px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+.resume-preview:hover {
+  transform: perspective(1000px) rotateY(0deg);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Inputs */
+.input-field {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #f1f5f9;
+  transition: all 0.3s ease;
+}
+.input-field:focus {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: #3b82f6;
+}
+
+/* Text Gradient */
+.gradient-text {
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Card Styling */
+.pricing-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f1f5f9;
+  transition: all 0.3s ease;
+}
+.pricing-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* Popular Badge */
+.popular-badge {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: white;
+}
+
+/* Feature List */
+.feature-list li {
+  position: relative;
+  padding-left: 1.5rem;
+  color: #d1d5db;
+}
+.feature-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #10b981;
+}
+
+/* Active Tab Highlight */
+.tab-active {
+  border-bottom: 2px solid #3b82f6;
+  color: #3b82f6;
+}
+
+/* Glass effect */
+.glass-effect {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Section overrides */
+section {
+  color: #e5e7eb;
+}
+
+

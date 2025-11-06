@@ -1,0 +1,29 @@
+ document.getElementById('downloadResume').addEventListener('click', () => {
+      const name = document.getElementById('previewName').textContent;
+      const title = document.getElementById('previewTitle').textContent;
+      const summary = document.getElementById('previewSummary').textContent;
+      const experience = document.getElementById('previewExperience').textContent;
+      const skills = Array.from(document.querySelectorAll('#previewSkills span')).map(s => s.textContent).join(', ');
+
+      const exportHTML = `
+        <div id="exportArea">
+          <h1 style="font-size: 28px; font-weight: bold;">${name}</h1>
+          <h3 style="color: #2563eb; margin-bottom: 20px;">${title}</h3>
+          <h4 style="color:#1e3a8a;">Professional Summary</h4>
+          <p style="margin-bottom: 15px;">${summary}</p>
+          <h4 style="color:#1e3a8a;">Experience</h4>
+          <p style="margin-bottom: 15px;">${experience}</p>
+          <h4 style="color:#1e3a8a;">Skills</h4>
+          <div>${skills.split(',').map(s => `<span class='skill-badge'>${s.trim()}</span>`).join('')}</div>
+        </div>
+      `;
+
+      const opt = {
+        margin: 0.5,
+        filename: `${name.replace(/\s+/g, '_')}_Resume.pdf`,
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+      };
+
+      html2pdf().set(opt).from(exportHTML).save();
+    });

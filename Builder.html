@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Resume Builder | Professional Resume Creator</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS Animations -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- Feather Icons -->
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+  <!-- HTML to PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+  <style>
+    @media print {
+      body {
+        -webkit-print-color-adjust: exact !important;
+        color-adjust: exact !important;
+      }
+    }
+
+    .skill-badge {
+      background: #e0e7ff;
+      color: #1e3a8a;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      display: inline-block;
+      margin: 3px;
+    }
+
+    .section-title {
+      color: #2563eb;
+      font-weight: 600;
+      margin-top: 20px;
+      border-bottom: 2px solid #2563eb;
+      display: inline-block;
+      padding-bottom: 3px;
+
+    }
+
+      /* --- Fix for text cutoff in PDF export --- */
+      /* --- Fix for text cutoff in PDF export --- */
+
+
+  </style>
+</head>
+
+<body class="bg-blue-900 text-white">
+
+  <!-- HEADER -->
+  <header class="bg-gray-800 shadow-lg">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-10 py-6">
+      <h1 class="text-2xl font-bold text-blue-400">AI Resume Builder</h1>
+      <nav class="absolute left-1/2 transform -translate-x-1/2 space-x-8 font-[Poppins] text-[16px] tracking-wide">
+        <a href="#home" class="hover:text-blue-400 transition transform hover:scale-105">Home</a>
+        <a href="#builder" class="hover:text-blue-400 transition transform hover:scale-105">Builder</a>
+        <a href="#templates" class="hover:text-blue-400 transition transform hover:scale-105">Templates</a>
+        <a href="#contact" class="hover:text-blue-400 transition transform hover:scale-105">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- BUILDER SECTION -->
+  <section id="builder" class="max-w-5xl mx-auto px-6 py-12 grid md:grid-cols-2 gap-10 items-start">
+
+    <!-- FORM -->
+    <div class="bg-gray-900 p-8 rounded-2xl shadow-2xl">
+      <h3 class="text-2xl font-semibold mb-6 text-blue-400">Enter Your Details</h3>
+      <div class="space-y-5">
+
+        <div>
+          <label class="block text-sm text-gray-400 mb-1">Full Name</label>
+          <input type="text" id="name" class="w-full bg-gray-800 p-3 rounded-lg focus:ring-2 focus:ring-blue-500"
+            placeholder="Favour Egworaha" />
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-sm text-gray-400 mb-1">Email</label>
+            <input type="email" id="email" class="w-full bg-gray-800 p-3 rounded-lg focus:ring-2 focus:ring-blue-500"
+              placeholder="you@example.com" />
+          </div>
+          <div>
+            <label class="block text-sm text-gray-400 mb-1">Phone</label>
+            <input type="text" id="phone" class="w-full bg-gray-800 p-3 rounded-lg focus:ring-2 focus:ring-blue-500"
+              placeholder="+234 810 000 0000" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm text-gray-400 mb-1">Professional Title</label>
+          <input type="text" id="title" class="w-full bg-gray-800 p-3 rounded-lg focus:ring-2 focus:ring-blue-500"
+            placeholder="Senior Software Engineer" />
+        </div>
+
+        <div>
+          <label class="block text-sm text-gray-400 mb-1">Professional Summary</label>
+          <textarea id="summary" rows="3"
+            class="w-full bg-gray-800 p-3 rounded-lg focus:ring-2 focus:ring-blue-500"
+            placeholder="Write a short professional summary..."></textarea>
+          <button id="aiSuggestSummary" class="text-blue-400 text-sm mt-2 hover:underline">✨ AI Suggest
+            Summary</button>
+        </div>
+
+        <div>
+          <label class="block text-sm text-gray-400 mb-1">Company Name</label>
+          <input type="text" id="company" class="w-full bg-gray-800 p-3 rounded-lg mb-3"
+            placeholder="Amazon" />
+
+          <label class="block text-sm text-gray-400 mb-1">Job Title</label>
+          <input type="text" id="jobTitle" class="w-full bg-gray-800 p-3 rounded-lg mb-3"
+            placeholder="Senior Software Engineer" />
+
+          <label class="block text-sm text-gray-400 mb-1">Start – End Dates</label>
+          <input type="text" id="dates" class="w-full bg-gray-800 p-3 rounded-lg mb-3"
+            placeholder="2018 – Present" />
+
+          <label class="block text-sm text-gray-400 mb-1">Experience (AI or Manual)</label>
+          <textarea id="experience" rows="4"
+            class="w-full bg-gray-800 p-3 rounded-lg focus:ring-2 focus:ring-blue-500"
+            placeholder="Add your job experience..."></textarea>
+          <button id="aiSuggestExperience" class="text-blue-400 text-sm mt-2 hover:underline">✨ AI Suggest
+            Experience</button>
+        </div>
+
+        <!-- New sections -->
+        <div>
+          <label class="block text-sm text-gray-400 mb-1">Education</label>
+          <textarea id="education" rows="2"
+            class="w-full bg-gray-800 p-3 rounded-lg focus:ring-2 focus:ring-blue-500"
+            placeholder="B.Sc. in Computer Science – University of Lagos, 2017"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-sm text-gray-400 mb-1">Certifications</label>
+          <textarea id="certifications" rows="2"
+            class="w-full bg-gray-800 p-3 rounded-lg focus:ring-2 focus:ring-blue-500"
+            placeholder="AWS Certified Developer, Google Cloud Professional"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-sm text-gray-400 mb-1">Awards</label>
+          <textarea id="awards" rows="2"
+            class="w-full bg-gray-800 p-3 rounded-lg focus:ring-2 focus:ring-blue-500"
+            placeholder="Employee of the Year – 2023"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-sm text-gray-400 mb-1">Skills (comma-separated)</label>
+          <input type="text" id="skills" class="w-full bg-gray-800 p-3 rounded-lg focus:ring-2 focus:ring-blue-500"
+            placeholder="JavaScript, React, Node.js" />
+        </div>
+
+        <button id="downloadResume"
+          class="w-full bg-blue-500 py-3 rounded-lg mt-4 hover:bg-blue-600 transition">📄 Download PDF</button>
+      </div>
+    </div>
+
+    <!-- LIVE PREVIEW -->
+    <div id="previewContainer"
+      class="resume-preview bg-gray-800 text-white rounded-lg p-8 shadow-2xl transition-all duration-300">
+      <div class="text-center mb-6">
+        <h3 id="previewName" class="text-3xl font-bold border-b-2 border-blue-400 inline-block pb-1">Your Name</h3>
+        <p id="previewTitle" class="text-blue-300 mt-1">Your Title</p>
+        <p id="previewEmailPhone" class="text-gray-300 text-sm mt-2">you@example.com | +234 000 000 0000</p>
+      </div>
+
+      <div class="mb-6">
+        <h4 class="section-title">Professional Summary</h4>
+        <p id="previewSummary" class="text-gray-300 text-sm">Your professional summary will appear here...</p>
+      </div>
+
+      <div class="mb-6">
+        <h4 class="section-title">Experience</h4>
+        <div id="previewExperience" class="text-gray-300 text-sm">Your work experience will appear here...</div>
+      </div>
+
+      <div class="mb-6">
+        <h4 class="section-title">Education</h4>
+        <p id="previewEducation" class="text-gray-300 text-sm">Your education details will appear here...</p>
+      </div>
+
+      <div class="mb-6">
+        <h4 class="section-title">Certifications</h4>
+        <p id="previewCertifications" class="text-gray-300 text-sm">Your certifications will appear here...</p>
+      </div>
+
+      <div class="mb-6">
+        <h4 class="section-title">Awards</h4>
+        <p id="previewAwards" class="text-gray-300 text-sm">Your awards will appear here...</p>
+      </div>
+
+      <div>
+        <h4 class="section-title">Skills</h4>
+        <div id="previewSkills" class="flex flex-wrap gap-2">
+          <span class="bg-blue-900 text-blue-200 px-3 py-1 rounded-full text-sm">Your Skills</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-blue-900 bg-opacity-80 backdrop-blur-md py-12 mt-16">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <p class="text-blue-200 mb-4">© 2025 AI Resume Builder. Built with ❤️ by Favour Egworaha</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+  feather.replace();
+  AOS.init();
+
+  // ===== Live field previews =====
+  const fields = [
+    { id: 'name', preview: 'previewName', default: 'Your Name' },
+    { id: 'title', preview: 'previewTitle', default: 'Your Title' },
+    { id: 'summary', preview: 'previewSummary', default: 'Your professional summary will appear here...' },
+    { id: 'education', preview: 'previewEducation', default: 'Your education details will appear here...' },
+    { id: 'certifications', preview: 'previewCertifications', default: 'Your certifications will appear here...' },
+    { id: 'awards', preview: 'previewAwards', default: 'Your awards will appear here...' }
+  ];
+
+  fields.forEach(f => {
+    const input = document.getElementById(f.id);
+    const preview = document.getElementById(f.preview);
+    if (input && preview) {
+      input.addEventListener('input', () => preview.textContent = input.value || f.default);
+    }
+  });
+
+  const emailInput = document.getElementById('email');
+  const phoneInput = document.getElementById('phone');
+  const emailPhonePreview = document.getElementById('previewEmailPhone');
+  function updateContact() {
+    emailPhonePreview.textContent = `${emailInput.value || 'you@example.com'} | ${phoneInput.value || '+234 000 000 0000'}`;
+  }
+  emailInput?.addEventListener('input', updateContact);
+  phoneInput?.addEventListener('input', updateContact);
+
+  const expInput = document.getElementById('experience');
+  const companyInput = document.getElementById('company');
+  const jobInput = document.getElementById('jobTitle');
+  const dateInput = document.getElementById('dates');
+
+  function renderExperience() {
+    const bullets = expInput.value.split(/\n/).filter(b => b.trim().length > 0);
+    document.getElementById('previewExperience').innerHTML = `
+      <div class="mb-3">
+        <h4 class="text-lg font-semibold text-white">${companyInput.value || 'Company Name'}</h4>
+        <p class="text-sm text-gray-400 italic mb-2">${jobInput.value || 'Job Title'} | ${dateInput.value || 'Dates'}</p>
+        <ul class="list-disc list-inside text-gray-300 space-y-1">${bullets.map(b=>`<li>${b.replace(/^•/, '').trim()}</li>`).join('')}</ul>
+      </div>`;
+  }
+  [expInput, companyInput, jobInput, dateInput].forEach(el => el?.addEventListener('input', renderExperience));
+
+  const skillsInput = document.getElementById('skills');
+  const skillsPreview = document.getElementById('previewSkills');
+  function renderSkills() {
+    const skills = skillsInput.value.split(',').map(s => s.trim()).filter(Boolean);
+    skillsPreview.innerHTML = skills.length
+      ? skills.map(s=>`<span class="bg-blue-900 text-blue-200 px-3 py-1 rounded-full text-sm">${s}</span>`).join('')
+      : `<span class="bg-blue-900 text-blue-200 px-3 py-1 rounded-full text-sm">Your Skills</span>`;
+  }
+  skillsInput.addEventListener('input', renderSkills);
+
+  window.addEventListener('DOMContentLoaded', () => {
+    fields.forEach(f => {
+      const el = document.getElementById(f.id);
+      const pv = document.getElementById(f.preview);
+      if (pv) pv.textContent = el.value || f.default;
+    });
+    updateContact();
+    renderExperience();
+    renderSkills();
+  });
+
+  // ===== AI SUMMARY =====
+  document.getElementById('aiSuggestSummary').addEventListener('click', async () => {
+    const title = document.getElementById('title').value.trim();
+    if (!title) return alert("Please enter a job title first!");
+    try {
+      const res = await fetch("http://localhost:3000/api/ai-summary", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title }),
+      });
+      const data = await res.json();
+      document.getElementById('summary').value = data.text;
+      document.getElementById('previewSummary').textContent = data.text;
+    } catch (err) {
+      alert("Error generating AI summary: " + err.message);
+    }
+  });
+
+  // ===== AI EXPERIENCE (all fields) =====
+  document.getElementById('aiSuggestExperience').addEventListener('click', async () => {
+    const title = document.getElementById('title').value.trim();
+    if (!title) return alert("Please enter a job title first!");
+    try {
+      const res = await fetch("http://localhost:3000/api/ai-experience", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title }),
+      });
+      const data = await res.json();
+      // Populate all relevant fields
+      document.getElementById('company').value = data.company || '';
+      document.getElementById('jobTitle').value = data.jobTitle || '';
+      document.getElementById('dates').value = data.dates || '';
+      document.getElementById('experience').value = (data.bullets || []).map(b => `• ${b}`).join('\n');
+      renderExperience();
+    } catch (err) {
+      alert("Error generating AI experience: " + err.message);
+    }
+  });
+
+/* ===== PDF EXPORT ===== */
+document.getElementById('downloadResume').addEventListener('click', async () => {
+  const preview = document.getElementById('previewContainer');
+
+  // Clone preview for PDF export
+  const clone = preview.cloneNode(true);
+  clone.style.background = '#ffffff';
+  clone.style.color = '#000000';
+  clone.style.padding = '0%';
+  clone.style.borderRadius = '0';
+  clone.style.width = '210mm';
+  clone.style.minHeight = '297mm';
+  clone.style.fontFamily = 'Arial, sans-serif';
+  clone.style.lineHeight = '1.5';
+
+  // Remove all background/border effects
+  clone.querySelectorAll('*').forEach(el => {
+    el.style.background = 'transparent';
+    el.style.color = '#000000';
+    el.style.border = 'none';
+    el.style.boxShadow = 'none';
+    el.style.whiteSpace = 'normal';
+    el.style.wordWrap = 'break-word';
+    el.style.overflow = 'visible';
+  });
+
+  // ===== Style the Name (Top Header)
+  const nameEl = clone.querySelector('#previewName');
+  if (nameEl) {
+    nameEl.style.textAlign = 'center';
+    nameEl.style.fontSize = '22px';
+    nameEl.style.fontWeight = 'bold';
+    nameEl.style.textTransform = 'uppercase';
+    nameEl.style.marginBottom = '4px';
+  }
+
+  // ===== Style the Title
+  const titleEl = clone.querySelector('#previewTitle');
+  if (titleEl) {
+    titleEl.style.textAlign = 'center';
+    titleEl.style.fontSize = '15px';
+    titleEl.style.fontWeight = 'normal';
+    titleEl.style.marginBottom = '4px';
+  }
+
+  // ===== Style the Contact Info
+  const contactEl = clone.querySelector('#previewEmailPhone');
+  if (contactEl) {
+    contactEl.style.textAlign = 'center';
+    contactEl.style.fontSize = '16px';
+    contactEl.style.color = '#333';
+    contactEl.style.marginBottom = '20px';
+  }
+
+  // ===== Format Section Titles like the sample
+  clone.querySelectorAll('.section-title').forEach(el => {
+    el.style.textAlign = 'center';
+    el.style.fontWeight = 'bold';
+    el.style.fontSize = '17px';
+    el.style.marginTop = '25px';
+    el.style.marginBottom = '8px';
+    el.style.textTransform = 'capitalize';
+    el.style.border = 'none';
+    el.style.position = 'relative';
+
+    // Add thin underline (divider)
+    const underline = document.createElement('hr');
+    underline.style.width = '100%';
+    underline.style.border = '0';
+    underline.style.borderTop = '1px solid #000';
+    underline.style.margin = '5px 0 15px';
+    el.after(underline);
+  });
+
+  // ===== Lists (Experience bullets)
+  clone.querySelectorAll('ul').forEach(ul => {
+    ul.style.margin = '0';
+    ul.style.paddingLeft = '15px';
+  });
+
+  // ===== Paragraph Styling
+  clone.querySelectorAll('p, li').forEach(el => {
+    el.style.fontSize = '12px';
+    el.style.color = '#000000';
+  });
+
+  // ===== Headings inside Experience or Education
+  clone.querySelectorAll('h4').forEach(el => {
+    el.style.fontSize = '12px';
+    el.style.fontWeight = 'bold';
+    el.style.marginBottom = '2px';
+  });
+
+  // ===== Section Spacing
+  clone.querySelectorAll('.mb-6').forEach(el => {
+    el.style.marginBottom = '16px';
+  });
+
+  // ===== PDF Export Options
+  const opt = {
+    margin: [10, 10, 10, 10],
+    filename: `${document.getElementById('name').value || 'My_Resume'}.pdf`,
+    image: { type: 'jpeg', quality: 1 },
+    html2canvas: {
+      scale: 2,
+      useCORS: true,
+      scrollY: 0,
+      backgroundColor: '#ffffff'
+    },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
+
+  try {
+    await html2pdf().set(opt).from(clone).save();
+  } catch (err) {
+    alert('❌ PDF export failed: ' + err.message);
+  }
+});
+
+
+
+  </script>
+</body>
+</html>

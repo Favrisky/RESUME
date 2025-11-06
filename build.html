@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Resume Builder | Professional Resume Creator</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS Animations -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- Feather Icons -->
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+  <!-- HTML to PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+  <style>
+    @media print {
+      body {
+        -webkit-print-color-adjust: exact !important;
+        color-adjust: exact !important;
+      }
+    }
+
+    .skill-badge {
+      background: #e0e7ff;
+      color: #1e3a8a;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      display: inline-block;
+      margin: 3px;
+    }
+
+    .section-title {
+      color: #2563eb;
+      font-weight: 600;
+      margin-top: 20px;
+      border-bottom: 2px solid #2563eb;
+      display: inline-block;
+      padding-bottom: 3px;
+    }
+  </style>
+</head>
+
+<body class="bg-blue-900 text-white">
+
+  <!-- HEADER -->
+  <header class="bg-gray-800 shadow-lg">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-10 py-6">
+      <h1 class="text-2xl font-bold text-blue-400">AI Resume Builder</h1>
+      <nav class="absolute left-1/2 transform -translate-x-1/2 space-x-8 font-[Poppins] text-[16px] tracking-wide">
+        <a href="#home" class="hover:text-blue-400 transition transform hover:scale-105">Home</a>
+        <a href="#builder" class="hover:text-blue-400 transition transform hover:scale-105">Builder</a>
+        <a href="#templates" class="hover:text-blue-400 transition transform hover:scale-105">Templates</a>
+        <a href="#contact" class="hover:text-blue-400 transition transform hover:scale-105">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- BUILDER SECTION -->
+  <section id="builder" class="max-w-5xl mx-auto px-6 py-12 grid md:grid-cols-2 gap-10 items-start">
+
+    <!-- FORM -->
+    <div class="bg-gray-900 p-8 rounded-2xl shadow-2xl">
+      <h3 class="text-2xl font-semibold mb-6 text-blue-400">Enter Your Details</h3>
+      <div class="space-y-5">
+
+        <div>
+          <label class="block text-sm text-gray-400 mb-1">Full Name</label>
+          <input type="text" id="name" class="w-full bg-gray-800 p-3 rounded-lg focus:ring-2 focus:ring-blue-500"
+            placeholder="Favour Egworaha" />
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-sm text-gray-400 mb-1">Email</label>
+            <input type="email" id="email" class="w-full bg-gray-800 p-3 rounded-lg focus:ring-2 focus:ring-blue-500"
+              placeholder="you@example.com" />
+          </div>
+          <div>
+            <label class="block text-sm text-gray-400 mb-1">Phone</label>
+            <input type="text" id="phone" class="w-full bg-gray-800 p-3 rounded-lg focus:ring-2 focus:ring-blue-500"
+              placeholder="+234 810 000 0000" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm text-gray-400 mb-1">Professional Title</label>
+          <input type="text" id="title" class="w-full bg-gray-800 p-3 rounded-lg focus:ring-2 focus:ring-blue-500"
+            placeholder="Senior Software Engineer" />
+        </div>
+
+        <div>
+          <label class="block text-sm text-gray-400 mb-1">Professional Summary</label>
+          <textarea id="summary" rows="3"
+            class="w-full bg-gray-800 p-3 rounded-lg focus:ring-2 focus:ring-blue-500"
+            placeholder="Write a short professional summary..."></textarea>
+          <button id="aiSuggestSummary" class="text-blue-400 text-sm mt-2 hover:underline">✨ AI Suggest
+            Summary</button>
+        </div>
+
+        <div>
+          <label class="block text-sm text-gray-400 mb-1">Company Name</label>
+          <input type="text" id="company" class="w-full bg-gray-800 p-3 rounded-lg mb-3"
+            placeholder="Amazon" />
+
+          <label class="block text-sm text-gray-400 mb-1">Job Title</label>
+          <input type="text" id="jobTitle" class="w-full bg-gray-800 p-3 rounded-lg mb-3"
+            placeholder="Senior Software Engineer" />
+
+          <label class="block text-sm text-gray-400 mb-1">Start – End Dates</label>
+          <input type="text" id="dates" class="w-full bg-gray-800 p-3 rounded-lg mb-3"
+            placeholder="2018 – Present" />
+
+          <label class="block text-sm text-gray-400 mb-1">Experience (AI or Manual)</label>
+          <textarea id="experience" rows="4"
+            class="w-full bg-gray-800 p-3 rounded-lg focus:ring-2 focus:ring-blue-500"
+            placeholder="Add your job experience..."></textarea>
+          <button id="aiSuggestExperience" class="text-blue-400 text-sm mt-2 hover:underline">✨ AI Suggest
+            Experience</button>
+        </div>
+
+        <!-- New sections -->
+        <div>
+          <label class="block text-sm text-gray-400 mb-1">Education</label>
+          <textarea id="education" rows="2"
+            class="w-full bg-gray-800 p-3 rounded-lg focus:ring-2 focus:ring-blue-500"
+            placeholder="B.Sc. in Computer Science – University of Lagos, 2017"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-sm text-gray-400 mb-1">Certifications</label>
+          <textarea id="certifications" rows="2"
+            class="w-full bg-gray-800 p-3 rounded-lg focus:ring-2 focus:ring-blue-500"
+            placeholder="AWS Certified Developer, Google Cloud Professional"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-sm text-gray-400 mb-1">Awards</label>
+          <textarea id="awards" rows="2"
+            class="w-full bg-gray-800 p-3 rounded-lg focus:ring-2 focus:ring-blue-500"
+            placeholder="Employee of the Year – 2023"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-sm text-gray-400 mb-1">Skills (comma-separated)</label>
+          <input type="text" id="skills" class="w-full bg-gray-800 p-3 rounded-lg focus:ring-2 focus:ring-blue-500"
+            placeholder="JavaScript, React, Node.js" />
+        </div>
+
+        <button id="downloadResume"
+          class="w-full bg-blue-500 py-3 rounded-lg mt-4 hover:bg-blue-600 transition">📄 Download PDF</button>
+      </div>
+    </div>
+
+    <!-- LIVE PREVIEW -->
+    <div id="previewContainer"
+      class="resume-preview bg-gray-800 text-white rounded-lg p-8 shadow-2xl transition-all duration-300">
+      <div class="text-center mb-6">
+        <h3 id="previewName" class="text-3xl font-bold border-b-2 border-blue-400 inline-block pb-1">Your Name</h3>
+        <p id="previewTitle" class="text-blue-300 mt-1">Your Title</p>
+        <p id="previewEmailPhone" class="text-gray-300 text-sm mt-2">you@example.com | +234 000 000 0000</p>
+      </div>
+
+      <div class="mb-6">
+        <h4 class="section-title">Professional Summary</h4>
+        <p id="previewSummary" class="text-gray-300 text-sm">Your professional summary will appear here...</p>
+      </div>
+
+      <div class="mb-6">
+        <h4 class="section-title">Experience</h4>
+        <div id="previewExperience" class="text-gray-300 text-sm">Your work experience will appear here...</div>
+      </div>
+
+      <div class="mb-6">
+        <h4 class="section-title">Education</h4>
+        <p id="previewEducation" class="text-gray-300 text-sm">Your education details will appear here...</p>
+      </div>
+
+      <div class="mb-6">
+        <h4 class="section-title">Certifications</h4>
+        <p id="previewCertifications" class="text-gray-300 text-sm">Your certifications will appear here...</p>
+      </div>
+
+      <div class="mb-6">
+        <h4 class="section-title">Awards</h4>
+        <p id="previewAwards" class="text-gray-300 text-sm">Your awards will appear here...</p>
+      </div>
+
+      <div>
+        <h4 class="section-title">Skills</h4>
+        <div id="previewSkills" class="flex flex-wrap gap-2">
+          <span class="bg-blue-900 text-blue-200 px-3 py-1 rounded-full text-sm">Your Skills</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-blue-900 bg-opacity-80 backdrop-blur-md py-12 mt-16">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <p class="text-blue-200 mb-4">© 2025 AI Resume Builder. Built with ❤️ by Favour Egworaha</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+  feather.replace();
+  AOS.init();
+
+  const fields = [
+    { id: 'name', preview: 'previewName', default: 'Your Name' },
+    { id: 'title', preview: 'previewTitle', default: 'Your Title' },
+    { id: 'summary', preview: 'previewSummary', default: 'Your professional summary will appear here...' },
+    { id: 'education', preview: 'previewEducation', default: 'Your education details will appear here...' },
+    { id: 'certifications', preview: 'previewCertifications', default: 'Your certifications will appear here...' },
+    { id: 'awards', preview: 'previewAwards', default: 'Your awards will appear here...' }
+  ];
+
+  fields.forEach(f => {
+    const input = document.getElementById(f.id);
+    const preview = document.getElementById(f.preview);
+    if (input && preview) {
+      input.addEventListener('input', () => preview.textContent = input.value || f.default);
+    }
+  });
+
+  const emailInput = document.getElementById('email');
+  const phoneInput = document.getElementById('phone');
+  const emailPhonePreview = document.getElementById('previewEmailPhone');
+  function updateContact() {
+    const email = emailInput?.value || 'you@example.com';
+    const phone = phoneInput?.value || '+234 000 000 0000';
+    emailPhonePreview.textContent = `${email} | ${phone}`;
+  }
+  emailInput?.addEventListener('input', updateContact);
+  phoneInput?.addEventListener('input', updateContact);
+
+  // ===== AI SUMMARY =====
+  document.getElementById('aiSuggestSummary').addEventListener('click', async () => {
+    const title = document.getElementById('title').value;
+    if (!title) return alert("Please enter a job title first!");
+    try {
+      const res = await fetch("http://localhost:3000/api/ai-summary", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title }),
+      });
+      const data = await res.json();
+      document.getElementById('summary').value = data.text;
+      document.getElementById('previewSummary').textContent = data.text;
+    } catch (err) {
+      alert("Error generating AI summary: " + err.message);
+    }
+  });
+
+  // ===== AI EXPERIENCE =====
+  document.getElementById('aiSuggestExperience').addEventListener('click', async () => {
+    const company = document.getElementById('company').value || "Company Name";
+    const jobTitle = document.getElementById('jobTitle').value || "Job Title";
+    const dates = document.getElementById('dates').value || "Dates";
+    const title = document.getElementById('title').value;
+
+    try {
+      const res = await fetch("http://localhost:3000/api/ai-experience", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title, company, jobTitle }),
+      });
+      const data = await res.json();
+      const bullets = data.text.split(/\n|•|-/).filter(b => b.trim().length > 5);
+      document.getElementById('experience').value = bullets.map(b => `• ${b.trim()}`).join('\n');
+      const formattedHTML = `
+        <div class="mb-3">
+          <h4 class="text-lg font-semibold text-white">${company}</h4>
+          <p class="text-sm text-gray-400 italic mb-2">${jobTitle} | ${dates}</p>
+          <ul class="list-disc list-inside text-gray-300 space-y-1">
+            ${bullets.map(b => `<li>${b.trim().replace(/^•/, '')}</li>`).join('')}
+          </ul>
+        </div>`;
+      document.getElementById('previewExperience').innerHTML = formattedHTML;
+    } catch (err) {
+      alert("Error generating AI experience: " + err.message);
+    }
+  });
+
+  // ===== Live Previews =====
+  const expInput = document.getElementById('experience');
+  const companyInput = document.getElementById('company');
+  const jobInput = document.getElementById('jobTitle');
+  const dateInput = document.getElementById('dates');
+
+  function renderExperience() {
+    const bullets = expInput?.value.split(/\n/).filter(b => b.trim().length > 0) || [];
+    const html = `
+      <div class="mb-3">
+        <h4 class="text-lg font-semibold text-white">${companyInput?.value || 'Company Name'}</h4>
+        <p class="text-sm text-gray-400 italic mb-2">${jobInput?.value || 'Job Title'} | ${dateInput?.value || 'Dates'}</p>
+        <ul class="list-disc list-inside text-gray-300 space-y-1">${bullets.map(b => `<li>${b.trim().replace(/^•/, '')}</li>`).join('')}</ul>
+      </div>`;
+    document.getElementById('previewExperience').innerHTML = html;
+  }
+  [expInput, companyInput, jobInput, dateInput].forEach(el => el?.addEventListener('input', renderExperience));
+
+  const skillsInput = document.getElementById('skills');
+  const skillsPreview = document.getElementById('previewSkills');
+  function renderSkills() {
+    const skills = skillsInput?.value.split(',').map(s => s.trim()).filter(Boolean) || [];
+    skillsPreview.innerHTML = skills.length
+      ? skills.map(s => `<span class='bg-blue-900 text-blue-200 px-3 py-1 rounded-full text-sm'>${s}</span>`).join('')
+      : `<span class='bg-blue-900 text-blue-200 px-3 py-1 rounded-full text-sm'>Your Skills</span>`;
+  }
+  skillsInput?.addEventListener('input', renderSkills);
+
+  window.addEventListener('DOMContentLoaded', () => {
+    fields.forEach(f => {
+      const el = document.getElementById(f.id);
+      const pv = document.getElementById(f.preview);
+      if (pv) pv.textContent = el?.value || f.default;
+    });
+    updateContact();
+    renderExperience();
+    renderSkills();
+  });
+
+  // ===== FIXED PDF EXPORT (STABLE & TESTED) =====
+  document.getElementById('downloadResume').addEventListener('click', async () => {
+    try {
+      const name = document.getElementById('previewName')?.textContent.trim() || 'Your Name';
+      const emailPhone = document.getElementById('previewEmailPhone')?.textContent.trim() || 'you@example.com | +234 000 000 0000';
+      const title = document.getElementById('previewTitle')?.textContent.trim() || 'Your Title';
+      const summary = document.getElementById('previewSummary')?.textContent.trim() || 'Professional summary goes here.';
+      const company = document.getElementById('company')?.value || 'Company Name';
+      const jobTitle = document.getElementById('jobTitle')?.value || 'Job Title';
+      const dates = document.getElementById('dates')?.value || 'Dates';
+      const experienceText = document.getElementById('experience')?.value || 'Your experience goes here.';
+      const education = document.getElementById('previewEducation')?.textContent.trim() || 'Your education goes here.';
+      const certs = document.getElementById('previewCertifications')?.textContent.trim() || '';
+      const awards = document.getElementById('previewAwards')?.textContent.trim() || '';
+      const skillsArray = (document.getElementById('skills')?.value || '').split(',').map(s => s.trim()).filter(Boolean);
+
+      const exportHTML = `
+        <div style="width:210mm;min-height:297mm;background:white;color:#111;
+          font-family:Arial,sans-serif;padding:20mm;box-sizing:border-box;">
+          <div style="text-align:center;border-bottom:3px solid #2563eb;padding-bottom:10px;margin-bottom:20px;">
+            <h1 style="font-size:28px;font-weight:bold;margin:0;color:#1e3a8a;">${name}</h1>
+            <p style="margin:5px 0;color:#666;">${emailPhone}</p>
+            <p style="margin:0;color:#2563eb;font-weight:600;">${title}</p>
+          </div>
+          <h2 style="color:#1e3a8a;border-bottom:2px solid #2563eb;display:inline-block;">Professional Summary</h2>
+          <p style="font-size:13px;color:#333;line-height:1.6;">${summary}</p>
+          <h2 style="color:#1e3a8a;border-bottom:2px solid #2563eb;display:inline-block;margin-top:15px;">Experience</h2>
+          <h3 style="font-size:15px;font-weight:600;margin:5px 0;">${company}</h3>
+          <p style="font-size:12px;color:#666;font-style:italic;">${jobTitle} | ${dates}</p>
+          ${experienceText.split('\n').filter(line=>line.trim()).map(line=>`<p style="margin:0;padding-left:10px;">• ${line.replace(/^[•\-]\s*/, '')}</p>`).join('')}
+          <h2 style="color:#1e3a8a;border-bottom:2px solid #2563eb;display:inline-block;margin-top:15px;">Education</h2>
+          <p style="font-size:13px;">${education}</p>
+          ${certs?`<h2 style="color:#1e3a8a;border-bottom:2px solid #2563eb;display:inline-block;margin-top:15px;">Certifications</h2><p style="font-size:13px;">${certs}</p>`:''}
+          ${awards?`<h2 style="color:#1e3a8a;border-bottom:2px solid #2563eb;display:inline-block;margin-top:15px;">Awards</h2><p style="font-size:13px;">${awards}</p>`:''}
+          <h2 style="color:#1e3a8a;border-bottom:2px solid #2563eb;display:inline-block;margin-top:15px;">Skills</h2>
+          <div>${skillsArray.length?skillsArray.map(skill=>`<span style="background:#e0e7ff;color:#1e3a8a;padding:5px 10px;border-radius:20px;margin:2px;display:inline-block;font-size:12px;">${skill}</span>`).join(''):'<p style="font-size:13px;">No skills provided.</p>'}</div>
+        </div>`;
+
+      const tempWrapper = document.createElement('div');
+      tempWrapper.innerHTML = exportHTML;
+      tempWrapper.style.position = 'absolute';
+      tempWrapper.style.left = '-9999px';
+      document.body.appendChild(tempWrapper);
+      const element = tempWrapper.firstElementChild;
+
+      await new Promise(resolve => setTimeout(resolve, 200));
+
+      const opt = {
+        margin: 0,
+        filename: `${name.replace(/\s+/g, '_')}_Resume.pdf`,
+        html2canvas: { scale: 2, useCORS: true, logging: false, backgroundColor: '#fff' },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+      await html2pdf().set(opt).from(element).save();
+      document.body.removeChild(tempWrapper);
+    } catch (err) {
+      console.error('❌ PDF generation error:', err);
+      alert('PDF generation failed. Please try again.');
+    }
+  });
+</script>
+
+</body>
+
+</html>
